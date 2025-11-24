@@ -57,12 +57,12 @@ function updateThemeIcon() {
 // Load summaries from markdown files
 async function loadSummaries() {
     const summaryFiles = [
-        '/summaries/resumo-executivo.md',
-        '/summaries/resumo-detalhado.md',
-        '/summaries/principais-insights.md',
-        '/summaries/citacoes-marcantes.md',
-        '/summaries/analise-critica.md',
-        '/summaries/guia-de-estudo.md'
+        'summaries/resumo-executivo.md',
+        'summaries/resumo-detalhado.md',
+        'summaries/principais-insights.md',
+        'summaries/citacoes-marcantes.md',
+        'summaries/analise-critica.md',
+        'summaries/guia-de-estudo.md'
     ];
     
     try {
