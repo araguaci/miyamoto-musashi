@@ -1,0 +1,22 @@
+{
+  "name": "gorin-no-sho",
+  "version": "1.0.0",
+  "description": "Site sobre o Gorin no Sho de Miyamoto Musashi",
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "watch-css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "npm run build-css",
+    "dev": "npm run watch-css",
+    "convert-md": "node convert-md-to-html.js",
+    "build-all": "npm run build-css && npm run convert-md"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "marked": "^17.0.1",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  }
+}
