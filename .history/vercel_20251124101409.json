@@ -1,4 +1,0 @@
-{
-    "buildCommand": "npm run build-all && npm run copy-public",
-    "outputDirectory": "public"
-  }

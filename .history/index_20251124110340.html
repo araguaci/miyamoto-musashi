@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorin no Sho - O Livro dos Cinco Elementos | Resumos e Análises</title>
+    <meta name="description" content="Explore diferentes resumos e análises do clássico Gorin no Sho de Miyamoto Musashi, organizados em diferentes perspectivas e níveis de profundidade.">
+    
+    <!-- Tailwind CSS -->
+    <link href="/output.css" rel="stylesheet">
+    
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Merriweather:wght@300;400;700;900&family=Noto+Serif+JP:wght@400;600;700&display=swap');
+
+        :root {
+            /* Color System - Light Theme */
+            --primary-50: #faf8ff;
+            --primary-100: #f3f0ff;
+            --primary-200: #e9e3ff;
+            --primary-300: #d4c7ff;
+            --primary-400: #b89eff;
+            --primary-500: #9b6fff;
+            --primary-600: #7c3aed;
+            --primary-700: #6d28d9;
+            --primary-800: #5b21b6;
+            --primary-900: #4c1d95;
+
+            /* Semantic Colors - Light Theme */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --text-quaternary: #a0aec0;
+
+            --border-primary: #e5e7eb;
+            --border-secondary: #d1d5db;
+            --border-accent: #c4b5fd;
+
+            --surface-elevated: #ffffff;
+            --surface-overlay: rgba(0, 0, 0, 0.05);
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            /* Shadows - Light Theme */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.3);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+            /* Animations */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .dark {
+            /* Color System - Dark Theme */
+            --primary-50: #1e1b24;
+            --primary-100: #2d2838;
+            --primary-200: #3d3548;
+            --primary-300: #5a4d6f;
+            --primary-400: #8b6fbd;
+            --primary-500: #a78bfa;
+            --primary-600: #b794f6;
+            --primary-700: #c7a9ff;
+            --primary-800: #d4bcff;
+            --primary-900: #e4d4ff;
+
+            /* Semantic Colors - Dark Theme */
+            --bg-primary: #0f0f14;
+            --bg-secondary: #16161d;
+            --bg-tertiary: #1e1e2a;
+
+            --text-primary: #f5f5f7;
+            --text-secondary: #d1d5db;
+            --text-tertiary: #9ca3af;
+            --text-quaternary: #6b7280;
+
+            --border-primary: #2d2d3a;
+            --border-secondary: #3a3a4a;
+            --border-accent: #5b21b6;
+
+            --surface-elevated: #1a1a24;
+            --surface-overlay: rgba(255, 255, 255, 0.05);
+
+            /* Gradients - Dark Theme (brighter) */
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+            --gradient-hero: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+
+            /* Shadows - Dark Theme (with glow) */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.4);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+
+            color-scheme: dark;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .reading-font {
+            font-family: 'Merriweather', 'Noto Serif JP', Georgia, serif;
+            line-height: 1.8;
+        }
+
+        .gradient-text {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        /* Improved backgrounds */
+        .bg-pattern-light {
+            background-color: var(--bg-primary);
+            background-image:
+                radial-gradient(at 40% 20%, rgba(124, 58, 237, 0.05) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.05) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(168, 85, 247, 0.03) 0px, transparent 50%);
+        }
+
+        .dark .bg-pattern-light {
+            background-color: var(--bg-primary);
+            background-image:
+                radial-gradient(at 40% 20%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(124, 58, 237, 0.05) 0px, transparent 50%);
+        }
+
+        /* Enhanced Card Animations */
+        .card-hover {
+            position: relative;
+            transition: all var(--transition-base);
+            border: 1px solid transparent;
+        }
+
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0.75rem;
+            padding: 2px;
+            background: var(--gradient-primary);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+        }
+
+        .card-hover:hover::before {
+            opacity: 1;
+        }
+
+        .card-hover:active {
+            transform: translateY(-2px) scale(0.99);
+        }
+
+        /* Progress Bar with Animation */
+        .progress-bar {
+            height: 3px;
+            background: var(--gradient-primary);
+            transition: width var(--transition-base);
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Icon Pulse Animation */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(139, 92, 246, 0);
+            }
+        }
+
+        .icon-wrapper {
+            position: relative;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Smooth Fade In */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s var(--spring) forwards;
+        }
+
+        /* Stagger animation for cards */
+        .card-hover:nth-child(1) { animation-delay: 0ms; }
+        .card-hover:nth-child(2) { animation-delay: 100ms; }
+        .card-hover:nth-child(3) { animation-delay: 200ms; }
+        .card-hover:nth-child(4) { animation-delay: 300ms; }
+        .card-hover:nth-child(5) { animation-delay: 400ms; }
+        .card-hover:nth-child(6) { animation-delay: 500ms; }
+        
+        .markdown-content h1 {
+            @apply text-4xl font-bold mb-6 mt-8 gradient-text;
+        }
+        
+        .markdown-content h2 {
+            @apply text-3xl font-bold mb-4 mt-6 text-gray-800 dark:text-gray-200;
+        }
+        
+        .markdown-content h3 {
+            @apply text-2xl font-semibold mb-3 mt-5 text-gray-700 dark:text-gray-300;
+        }
+        
+        .markdown-content p {
+            @apply mb-4 text-gray-600 dark:text-gray-400 leading-relaxed;
+        }
+        
+        .markdown-content ul, .markdown-content ol {
+            @apply mb-4 ml-6;
+        }
+        
+        .markdown-content li {
+            @apply mb-2 text-gray-600 dark:text-gray-400;
+        }
+        
+        .markdown-content blockquote {
+            @apply border-l-4 border-purple-500 pl-4 italic my-4 text-gray-700 dark:text-gray-300;
+        }
+        
+        .markdown-content table {
+            @apply w-full border-collapse mb-4;
+        }
+        
+        .markdown-content th {
+            @apply bg-purple-100 dark:bg-purple-900 text-left p-3 font-semibold;
+        }
+        
+        .markdown-content td {
+            @apply border border-gray-300 dark:border-gray-700 p-3;
+        }
+        
+        .markdown-content code {
+            @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm;
+        }
+        
+        .markdown-content pre {
+            @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4;
+        }
+        
+        .markdown-content a {
+            @apply text-purple-600 dark:text-purple-400 hover:underline;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-color: var(--border-primary) !important;
+        }
+
+        .dark nav {
+            background-color: rgba(15, 15, 20, 0.9) !important;
+            border-color: var(--border-primary) !important;
+        }
+
+        /* Button Enhancements */
+        .nav-button {
+            position: relative;
+            transition: all var(--transition-base);
+            color: var(--text-secondary);
+        }
+
+        .nav-button:hover {
+            background: var(--surface-overlay);
+            transform: scale(1.05);
+            color: var(--text-primary);
+        }
+
+        .nav-button:focus-visible {
+            outline: 2px solid var(--primary-600);
+            outline-offset: 2px;
+        }
+
+        .nav-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Keyboard Shortcuts Tooltip */
+        .kbd {
+            display: inline-block;
+            padding: 0.125rem 0.375rem;
+            font-size: 0.75rem;
+            font-family: ui-monospace, monospace;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-secondary);
+            border-radius: 0.375rem;
+            box-shadow: var(--shadow-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Enhanced Modal/Search */
+        @keyframes modal-fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes modal-slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-backdrop {
+            animation: modal-fade-in 0.2s ease-out;
+        }
+
+        .modal-content {
+            animation: modal-slide-up 0.3s var(--spring);
+        }
+
+        /* Category Badge */
+        .category-badge {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .card-hover:hover .category-badge::before {
+            left: 100%;
+        }
+
+        /* Reading Progress Indicator */
+        .reading-indicator {
+            position: fixed;
+            top: 60px;
+            right: 2rem;
+            width: 4px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .reading-indicator-fill {
+            width: 100%;
+            background: var(--gradient-primary);
+            transition: height 0.1s ease;
+        }
+
+        /* Accessibility - Focus States */
+        *:focus-visible {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
+            border-radius: 0.25rem;
+        }
+
+        /* Loading Skeleton */
+        @keyframes skeleton-loading {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s ease-in-out infinite;
+        }
+
+        .dark .skeleton {
+            background: linear-gradient(90deg, #2a2a2a 25%, #1a1a1a 50%, #2a2a2a 75%);
+            background-size: 200% 100%;
+        }
+
+        /* Improved Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 6px;
+            border: 2px solid var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-600);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Firefox scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-500) var(--bg-secondary);
+        }
+
+        /* Input placeholder styling */
+        #search-input::placeholder {
+            color: var(--text-quaternary);
+            opacity: 1;
+        }
+
+        #search-input:focus::placeholder {
+            opacity: 0.5;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .card-hover:hover {
+                transform: translateY(-4px) scale(1.005);
+            }
+
+            /* Reduce animations on mobile */
+            .icon-wrapper {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-pattern-light min-h-screen transition-colors duration-500">
+    
+    <!-- Progress Bar -->
+    <div id="progress-bar" class="progress-bar fixed top-0 left-0 z-50" style="width: 0%"></div>
+    
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 backdrop-blur-lg border-b shadow-md" role="navigation" aria-label="Navegação principal">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 group">
+                    <div class="icon-wrapper p-2 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg">
+                        <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold gradient-text">Gorin no Sho</span>
+                        <p class="text-xs hidden sm:block" style="color: var(--text-tertiary);">O Livro dos Cinco Elementos</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button
+                        id="search-btn"
+                        class="nav-button p-2.5 rounded-lg transition-all group relative"
+                        aria-label="Buscar (Ctrl+K)"
+                        title="Buscar">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                        <span class="hidden lg:inline-block ml-2 text-sm">
+                            <kbd class="kbd">Ctrl</kbd>+<kbd class="kbd">K</kbd>
+                        </span>
+                    </button>
+                    <button
+                        id="font-size-btn"
+                        class="nav-button p-2.5 rounded-lg transition-all"
+                        aria-label="Ajustar tamanho da fonte"
+                        title="Tamanho da fonte">
+                        <i data-lucide="type" class="w-5 h-5"></i>
+                    </button>
+                    <button
+                        id="theme-toggle"
+                        class="nav-button p-2.5 rounded-lg transition-all"
+                        aria-label="Alternar tema claro/escuro"
+                        title="Alternar tema">
+                        <i data-lucide="moon" class="w-5 h-5" id="theme-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="container mx-auto px-4 py-16 md:py-24" role="banner">
+        <div class="text-center max-w-4xl mx-auto">
+            <!-- Decorative Element -->
+            <div class="flex justify-center mb-8">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-600 blur-2xl opacity-20 animate-pulse"></div>
+                    <div class="relative p-4 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl shadow-2xl">
+                        <i data-lucide="book-open" class="w-12 h-12 md:w-16 md:h-16 text-white"></i>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black mb-4 gradient-text tracking-tight">
+                Gorin no Sho
+            </h1>
+            <div class="h-1 w-24 mx-auto bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full mb-6"></div>
+
+            <p class="text-2xl md:text-3xl font-semibold mb-4" style="color: var(--text-primary);">
+                O Livro dos Cinco Elementos
+            </p>
+            <p class="text-lg md:text-xl mb-8 flex items-center justify-center gap-2" style="color: var(--text-secondary);">
+                <span>Por</span>
+                <span class="font-bold" style="color: var(--primary-600);">Miyamoto Musashi</span>
+                <span class="text-sm" style="color: var(--text-quaternary);">• 1643</span>
+            </p>
+
+            <p class="text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-8" style="color: var(--text-secondary);">
+                Explore diferentes resumos e análises desta obra-prima filosófica e estratégica sobre o caminho do guerreiro,
+                organizados em perspectivas únicas e níveis variados de profundidade.
+            </p>
+
+            <!-- Quick Stats -->
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8 text-sm stats-container">
+                <div class="flex items-center gap-2" style="color: var(--text-secondary);">
+                    <div class="p-2 rounded-lg" style="background: var(--primary-100);">
+                        <i data-lucide="file-text" class="w-4 h-4" style="color: var(--primary-600);"></i>
+                    </div>
+                    <span><strong style="color: var(--text-primary);">7</strong> Conteúdos</span>
+                </div>
+                <div class="flex items-center gap-2" style="color: var(--text-secondary);">
+                    <div class="p-2 rounded-lg" style="background: var(--primary-100);">
+                        <i data-lucide="clock" class="w-4 h-4" style="color: var(--primary-600);"></i>
+                    </div>
+                    <span><strong style="color: var(--text-primary);">5-20</strong> min leitura</span>
+                </div>
+                <div class="flex items-center gap-2" style="color: var(--text-secondary);">
+                    <div class="p-2 rounded-lg" style="background: var(--primary-100);">
+                        <i data-lucide="layers" class="w-4 h-4" style="color: var(--primary-600);"></i>
+                    </div>
+                    <span>Múltiplas perspectivas</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Search Modal -->
+    <div id="search-modal" class="modal-backdrop hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+        <div class="modal-content rounded-2xl shadow-2xl w-full max-w-2xl max-h-[80vh] overflow-hidden ring-1"
+             style="background: var(--surface-elevated); border-color: var(--border-primary);">
+            <div class="p-5 border-b" style="border-color: var(--border-primary); background: var(--bg-secondary);">
+                <div class="flex items-center space-x-3">
+                    <div class="p-2 rounded-lg" style="background: var(--primary-100);">
+                        <i data-lucide="search" class="w-5 h-5" style="color: var(--primary-600);"></i>
+                    </div>
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Buscar nos resumos..."
+                        aria-label="Campo de busca"
+                        class="flex-1 bg-transparent outline-none text-lg"
+                        style="color: var(--text-primary); caret-color: var(--primary-600);"
+                        onkeydown="this.style.setProperty('--input-placeholder', 'var(--text-quaternary)')">
+                    <button
+                        id="close-search"
+                        class="p-2 rounded-lg transition-colors hover:bg-opacity-80"
+                        style="background: var(--surface-overlay);"
+                        aria-label="Fechar busca">
+                        <kbd class="kbd text-xs">ESC</kbd>
+                    </button>
+                </div>
+            </div>
+            <div id="search-results" class="p-4 overflow-y-auto max-h-[60vh]" role="region" aria-live="polite">
+                <p class="text-center py-12" style="color: var(--text-tertiary);">
+                    <i data-lucide="search" class="w-12 h-12 mx-auto mb-3 opacity-30" style="color: var(--text-quaternary);"></i>
+                    <span class="block">Digite para buscar nos resumos</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12" role="main">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-3" style="color: var(--text-primary);">
+                Explore os Resumos
+            </h2>
+            <p class="max-w-2xl mx-auto" style="color: var(--text-secondary);">
+                Escolha a perspectiva que melhor se adequa ao seu objetivo de estudo
+            </p>
+        </div>
+
+        <!-- Summary Cards Grid -->
+        <div id="summaries-grid" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
+            
+            <!-- Cards will be populated by JavaScript -->
+            <!-- Loading Skeleton -->
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 skeleton">
+                <div class="h-12 w-12 bg-gray-300 dark:bg-gray-700 rounded-lg mb-4"></div>
+                <div class="h-6 bg-gray-300 dark:bg-gray-700 rounded mb-3"></div>
+                <div class="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
+                <div class="h-4 bg-gray-300 dark:bg-gray-700 rounded w-2/3"></div>
+            </div>
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 skeleton hidden md:block">
+                <div class="h-12 w-12 bg-gray-300 dark:bg-gray-700 rounded-lg mb-4"></div>
+                <div class="h-6 bg-gray-300 dark:bg-gray-700 rounded mb-3"></div>
+                <div class="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
+                <div class="h-4 bg-gray-300 dark:bg-gray-700 rounded w-2/3"></div>
+            </div>
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 skeleton hidden lg:block">
+                <div class="h-12 w-12 bg-gray-300 dark:bg-gray-700 rounded-lg mb-4"></div>
+                <div class="h-6 bg-gray-300 dark:bg-gray-700 rounded mb-3"></div>
+                <div class="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
+                <div class="h-4 bg-gray-300 dark:bg-gray-700 rounded w-2/3"></div>
+            </div>
+
+            <!-- Dokodo Card -->
+            <article class="card-hover fade-in rounded-xl shadow-lg p-6 cursor-pointer border"
+                 style="background: var(--surface-elevated); border-color: var(--border-primary);"
+                 data-dokodo-card="true"
+                 onclick="window.location.href='dokodo.html'"
+                 role="button"
+                 tabindex="0"
+                 onkeypress="if(event.key === 'Enter') window.location.href='dokodo.html'"
+                 aria-label="Abrir Dokodo - As 21 Regras">
+                <div class="flex flex-col space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 p-3 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl shadow-md">
+                            <i data-lucide="scroll-text" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-xl font-bold mb-2 line-clamp-2" style="color: var(--text-primary);">
+                                Dokodo - As 21 Regras
+                            </h3>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed line-clamp-3" style="color: var(--text-secondary);">
+                        O Caminho Solitário: As 21 regras e 5 lições centrais escritas por Musashi pouco antes de sua morte.
+                    </p>
+                    <div class="flex items-center justify-between pt-3 border-t" style="border-color: var(--border-primary);">
+                        <div class="flex items-center gap-1.5 text-xs" style="color: var(--text-tertiary);">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                            <span>15 min</span>
+                        </div>
+                        <span class="category-badge inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold" style="background: var(--primary-100); color: var(--primary-700);">
+                            filosofia
+                        </span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <!-- Reader Panel (Modal/Drawer) -->
+    <div id="reader-panel" class="modal-backdrop hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-md overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="reader-title">
+        <div class="min-h-screen" style="background: var(--bg-primary);">
+            <!-- Reader Header -->
+            <div class="sticky top-0 backdrop-blur-lg border-b z-10 shadow-sm" style="background: color-mix(in srgb, var(--bg-primary) 95%, transparent); border-color: var(--border-primary);">
+                <div class="container mx-auto px-4 py-5">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <button
+                                    id="close-reader"
+                                    class="nav-button p-2 rounded-lg transition-colors"
+                                    aria-label="Fechar leitor (ESC)">
+                                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                                </button>
+                                <h2 id="reader-title" class="text-2xl md:text-3xl font-bold gradient-text"></h2>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm ml-11" style="color: var(--text-tertiary);">
+                                <span id="reader-meta" class="flex items-center gap-1.5">
+                                    <i data-lucide="clock" class="w-4 h-4"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <kbd class="kbd hidden sm:inline-block">ESC</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Progress Indicator -->
+            <div class="reading-indicator hidden md:block">
+                <div class="reading-indicator-fill" style="height: 0%"></div>
+            </div>
+
+            <!-- Reader Content -->
+            <div class="container mx-auto px-4 py-12 max-w-4xl">
+                <article id="reader-content" class="reading-font markdown-content prose prose-lg dark:prose-invert max-w-none">
+                    <!-- Content will be populated by JavaScript -->
+                </article>
+
+                <!-- Back to Top Button -->
+                <div class="mt-12 text-center">
+                    <button
+                        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                        class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+                        Voltar ao topo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="border-t mt-20" style="background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary)); border-color: var(--border-primary);" role="contentinfo">
+        <div class="container mx-auto px-4 py-12">
+            <!-- Footer Content -->
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- About -->
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-3">
+                        <div class="p-2 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg">
+                            <i data-lucide="book-open" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <h3 class="font-bold gradient-text text-lg">Gorin no Sho</h3>
+                    </div>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Uma coleção de resumos e análises sobre o clássico tratado de estratégia de Miyamoto Musashi.
+                    </p>
+                </div>
+
+                <!-- Info -->
+                <div class="text-center">
+                    <h4 class="font-semibold mb-3" style="color: var(--text-primary);">Sobre a Obra</h4>
+                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                        <li class="flex items-center justify-center gap-2">
+                            <i data-lucide="user" class="w-4 h-4"></i>
+                            <span>Miyamoto Musashi</span>
+                        </li>
+                        <li class="flex items-center justify-center gap-2">
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                            <span>1643</span>
+                        </li>
+                        <li class="flex items-center justify-center gap-2">
+                            <i data-lucide="globe" class="w-4 h-4"></i>
+                            <span>Tradução: José Yamashiro</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="text-center md:text-right">
+                    <h4 class="font-semibold mb-3" style="color: var(--text-primary);">Atalhos</h4>
+                    <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                        <p class="flex items-center justify-center md:justify-end gap-2">
+                            <kbd class="kbd">Ctrl</kbd>+<kbd class="kbd">K</kbd>
+                            <span>Buscar</span>
+                        </p>
+                        <p class="flex items-center justify-center md:justify-end gap-2">
+                            <kbd class="kbd">ESC</kbd>
+                            <span>Fechar</span>
+                        </p>
+                        <p class="flex items-center justify-center md:justify-end gap-2">
+                            <i data-lucide="scroll-text" class="w-4 h-4"></i>
+                            <span>Scroll para progresso</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="h-px mb-6" style="background: linear-gradient(to right, transparent, var(--border-secondary), transparent);"></div>
+
+            <!-- Copyright -->
+            <div class="text-center">
+                <p class="text-sm" style="color: var(--text-tertiary);">
+                    Este website apresenta resumos e análises organizados para estudo e reflexão.
+                </p>
+                <p class="text-xs mt-2" style="color: var(--text-quaternary);">
+                    Desenvolvido com <i data-lucide="heart" class="w-3 h-3 inline text-red-500"></i> para estudantes e entusiastas
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+K or Cmd+K to open search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('search-modal')?.classList.remove('hidden');
+                document.getElementById('search-input')?.focus();
+            }
+        });
+
+        // Remove skeleton loading once cards are loaded
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length > 0) {
+                    const skeletons = document.querySelectorAll('.skeleton');
+                    skeletons.forEach(skeleton => skeleton.remove());
+                }
+            });
+        });
+
+        const summariesGrid = document.getElementById('summaries-grid');
+        if (summariesGrid) {
+            observer.observe(summariesGrid, { childList: true });
+        }
+
+        // Add fade-in animation class to cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('summaries-grid');
+            if (grid) {
+                // Wait for cards to be populated, then add animation
+                setTimeout(() => {
+                    const cards = grid.querySelectorAll('.card-hover:not(.skeleton)');
+                    cards.forEach(card => {
+                        card.classList.add('fade-in');
+                    });
+                }, 100);
+            }
+        });
+
+        // Update reading progress indicator
+        window.addEventListener('scroll', () => {
+            const readerPanel = document.getElementById('reader-panel');
+            if (!readerPanel?.classList.contains('hidden')) {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+
+                const fill = document.querySelector('.reading-indicator-fill');
+                if (fill) {
+                    fill.style.height = scrollPercent + '%';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

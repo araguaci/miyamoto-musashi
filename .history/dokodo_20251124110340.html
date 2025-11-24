@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokodo - As 21 Regras do Caminho Solitário | Miyamoto Musashi</title>
+    <meta name="description" content="As 21 regras do Dokodo e as 5 lições centrais de Miyamoto Musashi, escritas pouco antes de sua morte como guia para o caminho do guerreiro.">
+    
+    <!-- Tailwind CSS -->
+    <link href="/output.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Merriweather:wght@300;400;700;900&family=Noto+Serif+JP:wght@400;600;700&display=swap');
+
+        :root {
+            /* Color System - Light Theme */
+            --primary-50: #faf8ff;
+            --primary-100: #f3f0ff;
+            --primary-200: #e9e3ff;
+            --primary-300: #d4c7ff;
+            --primary-400: #b89eff;
+            --primary-500: #9b6fff;
+            --primary-600: #7c3aed;
+            --primary-700: #6d28d9;
+            --primary-800: #5b21b6;
+            --primary-900: #4c1d95;
+
+            /* Semantic Colors - Light Theme */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --text-quaternary: #a0aec0;
+
+            --border-primary: #e5e7eb;
+            --border-secondary: #d1d5db;
+            --border-accent: #c4b5fd;
+
+            --surface-elevated: #ffffff;
+            --surface-overlay: rgba(0, 0, 0, 0.05);
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            /* Shadows - Light Theme */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.3);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+            /* Animations */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .dark {
+            /* Color System - Dark Theme */
+            --primary-50: #1e1b24;
+            --primary-100: #2d2838;
+            --primary-200: #3d3548;
+            --primary-300: #5a4d6f;
+            --primary-400: #8b6fbd;
+            --primary-500: #a78bfa;
+            --primary-600: #b794f6;
+            --primary-700: #c7a9ff;
+            --primary-800: #d4bcff;
+            --primary-900: #e4d4ff;
+
+            /* Semantic Colors - Dark Theme */
+            --bg-primary: #0f0f14;
+            --bg-secondary: #16161d;
+            --bg-tertiary: #1e1e2a;
+
+            --text-primary: #f5f5f7;
+            --text-secondary: #d1d5db;
+            --text-tertiary: #9ca3af;
+            --text-quaternary: #6b7280;
+
+            --border-primary: #2d2d3a;
+            --border-secondary: #3a3a4a;
+            --border-accent: #5b21b6;
+
+            --surface-elevated: #1a1a24;
+            --surface-overlay: rgba(255, 255, 255, 0.05);
+
+            /* Gradients - Dark Theme (brighter) */
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+            --gradient-hero: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+
+            /* Shadows - Dark Theme (with glow) */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.4);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+
+            color-scheme: dark;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .reading-font {
+            font-family: 'Merriweather', 'Noto Serif JP', Georgia, serif;
+            line-height: 1.8;
+        }
+
+        .gradient-text {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        /* Improved backgrounds */
+        .bg-pattern-light {
+            background-color: var(--bg-primary);
+            background-image:
+                radial-gradient(at 40% 20%, rgba(124, 58, 237, 0.05) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.05) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(168, 85, 247, 0.03) 0px, transparent 50%);
+        }
+
+        .dark .bg-pattern-light {
+            background-color: var(--bg-primary);
+            background-image:
+                radial-gradient(at 40% 20%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(124, 58, 237, 0.05) 0px, transparent 50%);
+        }
+
+        /* Enhanced Card Animations */
+        .card-hover {
+            position: relative;
+            transition: all var(--transition-base);
+            border: 1px solid transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-color: var(--border-primary) !important;
+        }
+
+        .dark nav {
+            background-color: rgba(15, 15, 20, 0.9) !important;
+            border-color: var(--border-primary) !important;
+        }
+
+        /* Button Enhancements */
+        .nav-button {
+            position: relative;
+            transition: all var(--transition-base);
+            color: var(--text-secondary);
+        }
+
+        .nav-button:hover {
+            background: var(--surface-overlay);
+            transform: scale(1.05);
+            color: var(--text-primary);
+        }
+
+        .nav-button:focus-visible {
+            outline: 2px solid var(--primary-600);
+            outline-offset: 2px;
+        }
+
+        .nav-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Rule Card Styling */
+        .rule-card {
+            background: var(--surface-elevated);
+            border: 1px solid var(--border-primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all var(--transition-base);
+            position: relative;
+        }
+
+        .rule-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .rule-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Lesson Card Styling */
+        .lesson-card {
+            background: var(--surface-elevated);
+            border: 2px solid var(--border-primary);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+            border-color: var(--border-accent);
+        }
+
+        /* Improved Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 6px;
+            border: 2px solid var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-600);
+            box-shadow: var(--shadow-glow);
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-500) var(--bg-secondary);
+        }
+    </style>
+</head>
+<body class="bg-pattern-light min-h-screen transition-colors duration-500">
+    
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 backdrop-blur-lg border-b shadow-md" role="navigation" aria-label="Navegação principal">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 group">
+                    <a href="index.html" class="flex items-center space-x-3 group">
+                        <div class="icon-wrapper p-2 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg">
+                            <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold gradient-text">Dokodo</span>
+                            <p class="text-xs hidden sm:block" style="color: var(--text-tertiary);">O Caminho Solitário</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <a
+                        href="index.html"
+                        class="nav-button p-2.5 rounded-lg transition-all"
+                        aria-label="Voltar para página inicial"
+                        title="Voltar">
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                    </a>
+                    <button
+                        id="theme-toggle"
+                        class="nav-button p-2.5 rounded-lg transition-all"
+                        aria-label="Alternar tema claro/escuro"
+                        title="Alternar tema">
+                        <i data-lucide="moon" class="w-5 h-5" id="theme-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="container mx-auto px-4 py-16 md:py-24" role="banner">
+        <div class="text-center max-w-4xl mx-auto">
+            <!-- Decorative Element -->
+            <div class="flex justify-center mb-8">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-600 blur-2xl opacity-20 animate-pulse"></div>
+                    <div class="relative p-4 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl shadow-2xl">
+                        <i data-lucide="scroll-text" class="w-12 h-12 md:w-16 md:h-16 text-white"></i>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black mb-4 gradient-text tracking-tight">
+                独行道
+            </h1>
+            <h2 class="text-3xl md:text-4xl font-bold mb-2" style="color: var(--text-primary);">
+                Dokodo
+            </h2>
+            <div class="h-1 w-24 mx-auto bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full mb-6"></div>
+
+            <p class="text-2xl md:text-3xl font-semibold mb-4" style="color: var(--text-primary);">
+                O Caminho Solitário
+            </p>
+            <p class="text-lg md:text-xl mb-8 flex items-center justify-center gap-2" style="color: var(--text-secondary);">
+                <span>Por</span>
+                <span class="font-bold" style="color: var(--primary-600);">Miyamoto Musashi</span>
+                <span class="text-sm" style="color: var(--text-quaternary);">• 1645</span>
+            </p>
+
+            <p class="text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-8" style="color: var(--text-secondary);">
+                Escrito pouco antes de sua morte, o Dokodo contém 21 preceitos que sintetizam a filosofia de vida de Musashi,
+                oferecendo um guia para o caminho do guerreiro e os princípios fundamentais da sabedoria estratégica.
+            </p>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 max-w-5xl" role="main">
+        
+        <!-- 21 Regras do Dokodo -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+                    As 21 Regras do Dokodo
+                </h2>
+                <p class="text-lg" style="color: var(--text-secondary);">
+                    Preceitos fundamentais para o caminho do guerreiro
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="rule-card">
+                    <div class="rule-number">1</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não pense de forma desonesta
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Aceite tudo exatamente como é. Mantenha a mente clara e honesta em todos os momentos.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">2</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        O caminho está no treinamento
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Pratique constantemente. O domínio vem através da dedicação e do esforço contínuo.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">3</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Familiarize-se com todas as artes
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Não se limite a uma única disciplina. Conheça diversas artes e profissões.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">4</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Conheça os caminhos de todas as profissões
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Compreenda as vantagens e desvantagens de cada profissão e área de conhecimento.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">5</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Distinga ganho e perda nas questões mundanas
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Desenvolva capacidade de discernimento para avaliar situações e tomar decisões sábias.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">6</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Desenvolva um julgamento intuitivo e compreensão de tudo
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Cultive a percepção instintiva e a compreensão profunda das situações.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">7</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Perceba as coisas que não podem ser vistas
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Desenvolva a capacidade de perceber o que está além do óbvio e do aparente.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">8</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Preste atenção mesmo aos pequenos detalhes
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Valorize os detalhes. Pequenas coisas podem fazer grande diferença.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">9</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não faça nada que seja inútil
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Evite ações desnecessárias. Foque no que é essencial e eficaz.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">10</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Respeite os deuses e budas sem depender deles
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Mantenha respeito pela espiritualidade, mas confie em suas próprias capacidades.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">11</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não busque o prazer por si só
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Evite a busca desenfreada por prazeres. Mantenha o equilíbrio e a moderação.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">12</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Em todas as coisas, não tenha preferências
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Mantenha a mente aberta. Evite apegos e preferências que limitem sua visão.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">13</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Seja indiferente a onde você vive
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Não se apegue a lugares. Adapte-se a qualquer ambiente.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">14</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não persiga o sabor da boa comida
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Mantenha simplicidade na alimentação. Não busque luxos desnecessários.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">15</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não se apegue a posses que você possui
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Evite o apego material. As posses não definem quem você é.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">16</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não aja seguindo costumes cegamente
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Pense criticamente. Não siga tradições sem questionar seu valor.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">17</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não colecionar armas ou praticar com armas além do que é útil
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Foque no essencial. Evite acumular ferramentas desnecessárias.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">18</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não tema a morte
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Aceite a mortalidade. O medo da morte limita suas ações e decisões.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">19</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Não busque posses para sua velhice
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Viva no presente. Não acumule apenas pensando no futuro distante.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">20</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Respeite os deuses e budas, mas não dependa deles
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Mantenha fé, mas confie em suas próprias ações e responsabilidades.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">21</div>
+                    <h3 class="font-bold text-lg mb-2" style="color: var(--text-primary);">
+                        Você pode abandonar seu próprio corpo, mas deve preservar sua honra
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        A honra e a integridade são mais importantes que a vida física.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Lições Centrais -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+                    As 5 Lições Centrais
+                </h2>
+                <p class="text-lg" style="color: var(--text-secondary);">
+                    Princípios fundamentais conectados aos cinco elementos do Gorin no Sho
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Terra -->
+                <div class="lesson-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="p-3 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg">
+                            <i data-lucide="mountain" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">Terra (地) - Fundamentos Sólidos</h3>
+                            <p class="text-sm mb-4" style="color: var(--text-tertiary);">Base e estabilidade</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Estabeleça bases sólidas:</strong> 
+                            Assim como a terra é o fundamento de tudo, você deve construir uma base sólida de conhecimento, 
+                            valores e habilidades. Sem fundamentos sólidos, nenhuma estrutura pode se manter.
+                        </p>
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Pratique os mandamentos:</strong> 
+                            Treine constantemente segundo os preceitos fundamentais. A disciplina e o treinamento regular 
+                            são a base de todo domínio.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Água -->
+                <div class="lesson-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg">
+                            <i data-lucide="droplet" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">Água (水) - Adaptabilidade</h3>
+                            <p class="text-sm mb-4" style="color: var(--text-tertiary);">Flexibilidade e fluidez</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Seja como a água:</strong> 
+                            A água se adapta a qualquer recipiente. Seja flexível e adaptável às circunstâncias, 
+                            mantendo sua essência mas mudando sua forma conforme necessário.
+                        </p>
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Evite rigidez:</strong> 
+                            Não se apegue a métodos fixos. A verdadeira sabedoria está em adaptar-se às situações 
+                            sem perder seus princípios fundamentais.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fogo -->
+                <div class="lesson-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="p-3 bg-gradient-to-br from-red-500 to-orange-600 rounded-lg">
+                            <i data-lucide="flame" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">Fogo (火) - Iniciativa e Ação</h3>
+                            <p class="text-sm mb-4" style="color: var(--text-tertiary);">Energia e determinação</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Tome a iniciativa:</strong> 
+                            O fogo se espalha rapidamente quando há oportunidade. Aja com determinação e não espere 
+                            que as oportunidades venham até você.
+                        </p>
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Controle o ritmo:</strong> 
+                            Assim como o fogo pode ser controlado, domine o ritmo das situações. Seja você quem 
+                            define quando e como agir.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vento -->
+                <div class="lesson-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg">
+                            <i data-lucide="wind" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">Vento (風) - Compreensão e Percepção</h3>
+                            <p class="text-sm mb-4" style="color: var(--text-tertiary);">Observação e discernimento</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Observe tudo:</strong> 
+                            O vento toca tudo sem ser visto. Desenvolva a capacidade de observar e compreender 
+                            situações, pessoas e ambientes sem se tornar óbvio.
+                        </p>
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Conheça os outros:</strong> 
+                            Entenda as diferentes escolas, métodos e perspectivas. O conhecimento amplo permite 
+                            antecipar e compreender as ações dos outros.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vácuo -->
+                <div class="lesson-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="p-3 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg">
+                            <i data-lucide="circle" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">Vácuo (空) - Vazio e Liberdade</h3>
+                            <p class="text-sm mb-4" style="color: var(--text-tertiary);">Transcendência e liberdade</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Transcenda as formas:</strong> 
+                            O vácuo contém tudo mas não é limitado por nada. Liberte-se de métodos rígidos e 
+                            preconceitos. A verdadeira maestria está além das técnicas.
+                        </p>
+                        <p class="leading-relaxed" style="color: var(--text-secondary);">
+                            <strong class="text-purple-600 dark:text-purple-400">Mente vazia, coração aberto:</strong> 
+                            Mantenha a mente livre de apegos e preferências. Apenas com uma mente vazia você pode 
+                            perceber a verdade e agir com total liberdade e eficácia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to Home -->
+        <div class="text-center mb-12">
+            <a
+                href="index.html"
+                class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                Voltar para Gorin no Sho
+            </a>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="border-t mt-20" style="background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary)); border-color: var(--border-primary);" role="contentinfo">
+        <div class="container mx-auto px-4 py-12">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-2 mb-3">
+                    <div class="p-2 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg">
+                        <i data-lucide="scroll-text" class="w-4 h-4 text-white"></i>
+                    </div>
+                    <h3 class="font-bold gradient-text text-lg">Dokodo - O Caminho Solitário</h3>
+                </div>
+                <p class="text-sm leading-relaxed mb-4" style="color: var(--text-secondary);">
+                    As 21 regras e 5 lições centrais de Miyamoto Musashi, escritas como seu testamento espiritual.
+                </p>
+                <p class="text-xs" style="color: var(--text-tertiary);">
+                    Escrito em 1645, pouco antes da morte de Musashi
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            html.classList.add('dark');
+            themeIcon.setAttribute('data-lucide', 'sun');
+        } else {
+            html.classList.remove('dark');
+            themeIcon.setAttribute('data-lucide', 'moon');
+        }
+        lucide.createIcons();
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeIcon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
+
